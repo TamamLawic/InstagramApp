@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     ImageView ivIconLogin;
     EditText etUsername;
     EditText etPassword;
@@ -66,7 +65,7 @@ public class login extends AppCompatActivity {
                     return;
                 }
                 goToMainActivity();
-                Toast.makeText(login.this, "Log in Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Log in Successful", Toast.LENGTH_SHORT).show();
                 
             }
         });
@@ -74,7 +73,7 @@ public class login extends AppCompatActivity {
 
     //Make and start intent to go to the main activity
     private void goToMainActivity() {
-        Intent i = new Intent(login.this, MainActivity.class);
+        Intent i = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(i);
         finish();
     }
