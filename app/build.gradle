@@ -39,7 +39,17 @@ dependencies {
     // Glide for remote image loading
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    //parse
+    //add dependency for parse
     implementation "com.github.parse-community.Parse-SDK-Android:parse:1.24.1"
-
+    //add dependency for recycler view
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    //add dependency for swipe to refresh
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation "androidx.appcompat:appcompat:${appCompatVersion}"
+    implementation "com.google.android.material:material:${designSupportVersion}"
+    //add dependencies for parceler
+    implementation 'org.parceler:parceler-api:1.1.12'
+    annotationProcessor 'org.parceler:parceler:1.1.12'
 }
+
+

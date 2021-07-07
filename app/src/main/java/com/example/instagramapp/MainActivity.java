@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //get all posts to timeline
-        //queryPosts();
+        queryPosts();
 
         //set onClickListener for taking an image
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
