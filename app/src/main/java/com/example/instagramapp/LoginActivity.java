@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ivIconLogin = findViewById(R.id.ivIconLogin);
         ivIconLogin.setImageResource(R.mipmap.icon);
-        etUsername = findViewById(R.id.etUserName);
+        etUsername = findViewById(R.id.etDescription);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {

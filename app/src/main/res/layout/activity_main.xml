@@ -5,32 +5,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/ivIcon"
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@mipmap/ic_launcher_round" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="19dp"
+        android:hint="Description..." />
 
     <Button
         android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
+        android:layout_width="109dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="155dp"
+        android:layout_marginStart="158dp"
         android:layout_marginBottom="20dp"
-        android:text="Log Out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivIcon" />
+        android:background="@color/white"
+        android:text="Log Out" />
+
+    <Button
+        android:id="@+id/btnTakePicture"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/etDescription"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="11dp"
+        android:background="@color/white"
+        android:text="Take Picture " />
+
+    <Button
+        android:id="@+id/btnPost"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ivImage"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:text="Post" />
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/btnTakePicture"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="5dp"
+        tools:src="@tools:sample/avatars" />
 
 </RelativeLayout>
