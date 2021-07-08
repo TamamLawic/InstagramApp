@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-
     <EditText
         android:id="@+id/etDescription"
         android:layout_width="380dp"
@@ -39,8 +37,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="11dp"
         android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:text="Log In" />
+        android:text="Log In"
+        android:background="@drawable/buttonbackground"
+        android:textColor="@color/black" />
 
     <ImageView
         android:id="@+id/ivIconLogin"

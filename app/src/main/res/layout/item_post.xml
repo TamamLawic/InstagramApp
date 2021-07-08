@@ -40,8 +40,16 @@
             android:id="@+id/btnComment"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/ufi_comment"
             android:text="Button 2" />
+
+        <ImageButton
+            android:id="@+id/btnShare"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/direct"
+            android:scaleType="centerCrop" />
     </TableRow>
 
     <TextView
