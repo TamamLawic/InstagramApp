@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
@@ -26,6 +27,7 @@ import java.util.List;
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     private Context context;
     private List<Post> posts;
+    public static final String KEY_PROFILE = "profilePicture";
 
     public PostsAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -58,6 +60,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvDescription;
         private ImageButton btnComment;
         private TextView tvTime;
+        private ImageView ivProfile;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +69,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             btnComment = itemView.findViewById(R.id.btnComment);
             tvTime = itemView.findViewById(R.id.tvTimeStamp);
+            ivProfile = itemView.findViewById(R.id.ivProfile);
             btnComment.setOnClickListener(this);
         }
 
@@ -82,6 +86,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
+            //set profile image for the signed in user
+            ParseFile profileImage = post.getUser().getParseFile(KEY_PROFILE);
+            Glide.with(context)
+                    .load(profileImage.getUrl())
+                    .circleCrop()
+                    .error(R.drawable.ufi_heart)
+                    .into(ivProfile);
+            
         }
 
         //when the post is clicked, bring up a detailed view of the post

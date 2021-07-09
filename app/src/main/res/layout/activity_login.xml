@@ -1,44 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:outlineAmbientShadowColor="#000000"
+    android:outlineProvider="bounds"
     tools:context=".MainActivity">
+
     <EditText
         android:id="@+id/etDescription"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/ivIconLogin"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="19dp"
-        android:hint="username" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Phone number, username, or email"
+        android:outlineProvider="bounds"
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="380dp"
         android:layout_height="40dp"
         android:layout_below="@+id/etDescription"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="20dp"
+        android:hint="password"
         android:inputType="textPassword"
-    android:hint="password" />
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="380dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/etPassword"
+        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#1778F2"
         android:text="Log In"
-        android:background="@drawable/buttonbackground"
         android:textColor="@color/black" />
 
     <ImageView
@@ -47,7 +56,53 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etPassword"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="Forgot password?"
+        android:textColor="#1778F2"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="30dp"
+        android:text="Don't have an account?" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignParentEnd="false"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toEndOf="@+id/textView7"
+        android:text="Sign Up"
+        android:textColor="#1778F2" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="45dp"
+        android:text="Instagram from Facebook" />
 
 </RelativeLayout>

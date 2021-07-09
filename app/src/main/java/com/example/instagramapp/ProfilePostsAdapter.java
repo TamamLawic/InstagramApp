@@ -1,25 +1,19 @@
 package com.example.instagramapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
-import org.parceler.Parcels;
-
-import java.util.Date;
 import java.util.List;
 
 //Adapter class for post feed, to connect to recycler view
@@ -67,8 +61,8 @@ public class ProfilePostsAdapter extends RecyclerView.Adapter<ProfilePostsAdapte
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivUserPostImage);
             }
-        }
 
+        }
     }
 
 }

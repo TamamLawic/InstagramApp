@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_profile_posts"
+        android:id="@+id/rvProfilePosts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button"
@@ -17,7 +17,7 @@
         android:layout_marginBottom="0dp" />
 
     <ImageView
-        android:id="@+id/iv_profile_image"
+        android:id="@+id/ivProfileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
@@ -29,25 +29,30 @@
     <Button
         android:id="@+id/button"
         android:layout_width="340dp"
-        android:layout_height="37dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/tvUsernameProfile"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Edit Profile" />
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FFFFFF"
+        android:outlineAmbientShadowColor="#000000"
+        android:text="Edit Profile"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="40dp"
-        android:layout_height="37dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/tvUsernameProfile"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_toEndOf="@+id/button"
+        android:backgroundTint="#FFFFFF"
         android:icon="@android:drawable/arrow_down_float"
-        android:text="V" />
+        android:text="V"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tvPostCount"
@@ -55,10 +60,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="50dp"
-        android:layout_toEndOf="@+id/iv_profile_image"
+        android:layout_marginTop="60dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
         android:text="2"
-        android:textColor="@color/black" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -66,10 +73,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:layout_toEndOf="@+id/tvPostCount"
         android:text="440"
-        android:textColor="@color/black" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -77,10 +86,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:layout_toEndOf="@+id/textView2"
         android:text="498"
-        android:textColor="@color/black" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -88,8 +99,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvPostCount"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/iv_profile_image"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
         android:text="Posts" />
 
     <TextView
@@ -98,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/textView4"
         android:text="Followers" />
 
@@ -108,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/textView5"
         android:text="Following" />
 
@@ -116,11 +127,12 @@
         android:id="@+id/tvUsernameProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_profile_image"
+        android:layout_below="@+id/ivProfileImage"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="7dp"
         android:text="Sophie Van Pelt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/black" />
 
 </RelativeLayout>

@@ -5,22 +5,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.instagramapp.Post;
-import com.example.instagramapp.PostsAdapter;
 import com.example.instagramapp.ProfilePostsAdapter;
 import com.example.instagramapp.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -30,9 +30,11 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
     private RecyclerView rvProfile;
     public static final String TAG = "PostsFragment";
+    public static final String KEY_PROFILE = "profilePicture";
     protected ProfilePostsAdapter adapter;
     protected List<Post> allPosts;
     TextView tvUsernameProfile;
+    ImageView ivUserProfileImage;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -46,12 +48,14 @@ public class ProfileFragment extends Fragment {
     }
 
 
+    // Runs shortly after onCreateView is complete, sets up Recycler
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvProfile = view.findViewById(R.id.rv_profile_posts);
+        rvProfile = view.findViewById(R.id.rvProfilePosts);
         tvUsernameProfile = view.findViewById(R.id.tvUsernameProfile);
         tvUsernameProfile.setText(ParseUser.getCurrentUser().getUsername());
+        ivUserProfileImage = view.findViewById(R.id.ivProfileImage);
 
         allPosts = new ArrayList<>();
         //create the adapter
@@ -62,6 +66,14 @@ public class ProfileFragment extends Fragment {
         rvProfile.setLayoutManager(new GridLayoutManager(getContext(), 3));
         // query posts from Parstagram
         queryPosts();
+
+        //set profile image for the signed in user
+        ParseFile profileImage = ParseUser.getCurrentUser().getParseFile(KEY_PROFILE);
+        Glide.with(getContext())
+                .load(profileImage.getUrl())
+                .circleCrop()
+                .error(R.drawable.ufi_heart)
+                .into(ivUserProfileImage);
     }
 
     //get all of the users posts
