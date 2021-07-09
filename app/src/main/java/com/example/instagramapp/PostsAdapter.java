@@ -56,7 +56,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvUsername;
         private ImageView ivImage;
         private TextView tvDescription;
-        private ImageButton btnLike;
         private ImageButton btnComment;
         private TextView tvTime;
 
@@ -66,7 +65,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             btnComment = itemView.findViewById(R.id.btnComment);
-            btnLike = itemView.findViewById(R.id.btnLike);
             tvTime = itemView.findViewById(R.id.tvTimeStamp);
             btnComment.setOnClickListener(this);
         }
