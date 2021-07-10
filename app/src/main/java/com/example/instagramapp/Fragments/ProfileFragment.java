@@ -1,10 +1,12 @@
 package com.example.instagramapp.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.instagramapp.LoginActivity;
 import com.example.instagramapp.Post;
 import com.example.instagramapp.ProfilePostsAdapter;
 import com.example.instagramapp.R;
@@ -26,7 +29,9 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Fragment for Bottom Navigation Bar that allows user to see their profile, and the feed of posts they have authored.
+ */
 public class ProfileFragment extends Fragment {
     private RecyclerView rvProfile;
     public static final String TAG = "PostsFragment";
@@ -35,7 +40,9 @@ public class ProfileFragment extends Fragment {
     protected List<Post> allPosts;
     TextView tvUsernameProfile;
     ImageView ivUserProfileImage;
+    Button btnLogOutProfile;
 
+    /** Constructor */
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -48,7 +55,8 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    // Runs shortly after onCreateView is complete, sets up Recycler
+    /** Sets up Profile Fragment. Populates recyclerView of posts from current user, and sets up information about user profile. */
+    /**This event is triggered shortly after the onCreateView. View setup is here*/
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -56,6 +64,7 @@ public class ProfileFragment extends Fragment {
         tvUsernameProfile = view.findViewById(R.id.tvUsernameProfile);
         tvUsernameProfile.setText(ParseUser.getCurrentUser().getUsername());
         ivUserProfileImage = view.findViewById(R.id.ivProfileImage);
+        btnLogOutProfile = view.findViewById(R.id.btnLogOutProfile);
 
         allPosts = new ArrayList<>();
         //create the adapter
@@ -64,7 +73,7 @@ public class ProfileFragment extends Fragment {
         rvProfile.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvProfile.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        // query posts from Parstagram
+        // query posts from Instagram App
         queryPosts();
 
         //set profile image for the signed in user
@@ -74,9 +83,21 @@ public class ProfileFragment extends Fragment {
                 .circleCrop()
                 .error(R.drawable.ufi_heart)
                 .into(ivUserProfileImage);
+
+        btnLogOutProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                //send user back to the log in page
+                Intent i = new Intent(getContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
-    //get all of the users posts
+    /** Begins a Parse Query in a background thread, getting all of the posts the user has authored. */
+    /**The posts are added to a list, and the adapter is notified of the data change.*/
     protected void queryPosts() {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);

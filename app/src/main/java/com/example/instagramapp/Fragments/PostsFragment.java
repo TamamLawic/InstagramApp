@@ -24,6 +24,9 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fragment for Bottom Navigation Bar that allows user to see their timeline.
+ */
 public class PostsFragment extends Fragment {
     private RecyclerView rvPosts;
     public static final String TAG = "PostsFragment";
@@ -31,6 +34,7 @@ public class PostsFragment extends Fragment {
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
 
+    /** Constructor */
     public PostsFragment() {
         // Required empty public constructor
     }
@@ -42,6 +46,8 @@ public class PostsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_posts, container, false);
     }
 
+    /** Sets up Post Fragment. Populates recyclerView of posts, from all users. */
+    /**This event is triggered shortly after the onCreateView. View setup is here*/
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -54,7 +60,7 @@ public class PostsFragment extends Fragment {
         rvPosts.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-        // query posts from Parstagram
+        // query posts from Instagram App
         queryPosts();
 
         // Lookup the swipe container view
@@ -78,8 +84,7 @@ public class PostsFragment extends Fragment {
 
 
 
-
-    //Gets the posts of the user
+    /** Queries the database using a ParseQuery, finding posts in a background tread. Alerts the adapter when finished.*/
     protected void queryPosts() {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
@@ -111,7 +116,8 @@ public class PostsFragment extends Fragment {
         });
     }
 
-    //refreshes timeline when user swipes up, pulling the lastest in their feed
+    /** Starts a new PareQuery in background when user swipes up, pulling the latest posts in their feed.
+     * Adds posts to the list of posts, and alerts the adapter.*/
     public void fetchTimelineAsync(int page) {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);

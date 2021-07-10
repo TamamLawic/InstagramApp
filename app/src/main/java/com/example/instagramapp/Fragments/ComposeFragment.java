@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,25 +40,23 @@ import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
+/**
+ * Fragment for Bottom Navigation Bar that allows user to compose a new Instagram Post
+ */
 public class ComposeFragment extends Fragment {
     public static final String TAG = "ComposeFragment";
+    public String photoFileName = "photo.jpg";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     TextView mBtnLogOut;
-    Button btnCaptureImage;
+    ImageButton btnCaptureImage;
     EditText etDescription;
     ImageView ivPostImage;
-    Button btnSubmit;
-    public String photoFileName = "photo.jpg";
+    ImageButton btnSubmit;
     File photoFile;
 
+    /** Empty Constructor */
     public ComposeFragment() {
         // Required empty public constructor
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -67,7 +66,8 @@ public class ComposeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_compose, container, false);
     }
 
-    //This event is triggered shortly after the onCreateView. View setup is here
+    /** Returns the File for a photo stored on disk given the fileName */
+    /**This event is triggered shortly after the onCreateView. View setup is here*/
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -75,18 +75,6 @@ public class ComposeFragment extends Fragment {
         btnCaptureImage = view.findViewById(R.id.btnTakePicture);
         btnSubmit = view.findViewById(R.id.btnPost);
         ivPostImage = view.findViewById(R.id.ivImage);
-        mBtnLogOut =view.findViewById(R.id.btnLogOut);
-
-        //set onClickListener for logOut Button and log out when clicked
-        mBtnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logOutUser();
-            }
-        });
-
-        //get all posts to timeline
-        queryPosts();
 
         //set onClickListener for taking an image
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +104,8 @@ public class ComposeFragment extends Fragment {
 
 
 
-    //Launch camera and take an image accessible to the InstagramApp
+    /** External Launch of camera application on phone and takes an image.
+     * Image file wrapped into a content provider to access later. */
     public void onLaunchCamera() {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -136,7 +125,7 @@ public class ComposeFragment extends Fragment {
         }
     }
 
-    //When the picture is taken and saved, add it to the post
+    /** Runs when a picture is taken and saved. Adds the Image to the ImageView resource for composing the post.*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -153,7 +142,7 @@ public class ComposeFragment extends Fragment {
         }
     }
 
-    // Returns the File for a photo stored on disk given the fileName
+    /** Returns the File for a photo stored on disk given the fileName */
     public File getPhotoFileUri(String fileName) {
         // Get safe storage directory for photos
         // Use `getExternalFilesDir` on Context to access package-specific directories.
@@ -169,7 +158,7 @@ public class ComposeFragment extends Fragment {
         return new File(mediaStorageDir.getPath() + File.separator + fileName);
     }
 
-    //Save post in background thread
+    /** Save post in background thread, by setting the parameters to the current fields of the View.*/
     private void savePost(String description, ParseUser currentUser, File photoFile) {
         Post post = new Post();
         post.setDescription(description);
@@ -189,34 +178,5 @@ public class ComposeFragment extends Fragment {
             }
         });
 
-    }
-
-    //Logs out the current user and show log in page
-    private void logOutUser() {
-        ParseUser.logOut();
-        ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-        //send user back to the log in page
-        Intent i = new Intent(getContext(), LoginActivity.class);
-        startActivity(i);
-    }
-
-    //Gets the posts of the user
-    private void queryPosts() {
-        // Specify which class to query
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
-        // Specify the object id
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if (e != null){
-                    Log.e(TAG, "Issue with getting posts");
-                    return;
-                }
-                for (Post post : posts) {
-                    Log.i(TAG, "Post:" + post.getDescription() + ", username: " + post.getUser().getUsername());
-                }
-            }
-        });
     }
 }

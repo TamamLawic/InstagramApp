@@ -23,7 +23,9 @@ import org.parceler.Parcels;
 import java.util.Date;
 import java.util.List;
 
-//Adapter class for post feed, to connect to recycler view
+/**
+ * Adapter class for post feed, to connect to recycler view in PostsFragment.
+ */
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     private Context context;
     private List<Post> posts;
@@ -39,7 +41,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return posts.size();
     }
 
-    //Create a view for each of the item posts, in the form of item_post
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,6 +54,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         holder.bind(post);
     }
 
+    /** Viewholder class, that sets up posts for the PostsFragment recycler view.
+     * Binds Posts using Parse to get the data, and Glide to bind it.
+     * Sets up onClickListener for the comment button, to start DetailsActivity.*/
     //find and store references to the Text and Image views for the post
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView tvUsername;
@@ -73,14 +77,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             btnComment.setOnClickListener(this);
         }
 
-        //Bind the post passed in, into the item_post for the recycler view
+        /** Bind the post passed in into the item_post for the recycler view using Glide for images. */
         public void bind(Post post) {
             // Bind the post data to the view elements
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
             //bind time since the post was posted
             Date createdAt = post.getCreatedAt();
-            String timeAgo = Post.calculateTimeAgo(createdAt);
+            String timeAgo = post.calculateTimeAgo(createdAt);
             tvTime.setText(timeAgo);
             ParseFile image = post.getImage();
             if (image != null) {
@@ -96,7 +100,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             
         }
 
-        //when the post is clicked, bring up a detailed view of the post
+        /** When the post is clicked, wrap post data using Parcels and start DetailsActivity sending it with the wrapped data. */
         @Override
         public void onClick(View v) {
             // gets item position
@@ -116,8 +120,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     }
 
-    /* Within the RecyclerView.Adapter class */
-
     // Clean all elements of the recycler
     public void clear() {
         posts.clear();
@@ -128,42 +130,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     public void addAll(List<Post> list) {
         posts.addAll(list);
         notifyDataSetChanged();
-    }
-
-    public static String calculateTimeAgo(Date createdAt) {
-
-        int SECOND_MILLIS = 1000;
-        int MINUTE_MILLIS = 60 * SECOND_MILLIS;
-        int HOUR_MILLIS = 60 * MINUTE_MILLIS;
-        int DAY_MILLIS = 24 * HOUR_MILLIS;
-
-        try {
-            createdAt.getTime();
-            long time = createdAt.getTime();
-            long now = System.currentTimeMillis();
-
-            final long diff = now - time;
-            if (diff < MINUTE_MILLIS) {
-                return "just now";
-            } else if (diff < 2 * MINUTE_MILLIS) {
-                return "a minute ago";
-            } else if (diff < 50 * MINUTE_MILLIS) {
-                return diff / MINUTE_MILLIS + " m";
-            } else if (diff < 90 * MINUTE_MILLIS) {
-                return "an hour ago";
-            } else if (diff < 24 * HOUR_MILLIS) {
-                return diff / HOUR_MILLIS + " h";
-            } else if (diff < 48 * HOUR_MILLIS) {
-                return "yesterday";
-            } else {
-                return diff / DAY_MILLIS + " d";
-            }
-        } catch (Exception e) {
-            Log.i("Error:", "getRelativeTimeAgo failed", e);
-            e.printStackTrace();
-        }
-
-        return "";
     }
 
 }

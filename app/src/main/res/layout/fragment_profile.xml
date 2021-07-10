@@ -28,31 +28,32 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/tvUsernameProfile"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:layout_toStartOf="@+id/btnLogOutProfile"
         android:backgroundTint="#FFFFFF"
         android:outlineAmbientShadowColor="#000000"
         android:text="Edit Profile"
         android:textColor="@color/black" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="40dp"
+        android:id="@+id/btnLogOutProfile"
+        android:layout_width="55dp"
         android:layout_height="40dp"
         android:layout_below="@+id/tvUsernameProfile"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_toEndOf="@+id/button"
         android:backgroundTint="#FFFFFF"
         android:icon="@android:drawable/arrow_down_float"
-        android:text="V"
-        android:textColor="@color/black" />
+        android:text="Log Out"
+        android:textColor="@color/black"
+        android:textSize="8sp" />
 
     <TextView
         android:id="@+id/tvPostCount"

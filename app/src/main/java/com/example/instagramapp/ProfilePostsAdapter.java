@@ -16,7 +16,9 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
-//Adapter class for post feed, to connect to recycler view
+/**
+ * Adapter class for ProfileFragment, to connect to recycler view showing user's posts
+ */
 public class ProfilePostsAdapter extends RecyclerView.Adapter<ProfilePostsAdapter.ViewHolder> {
     private Context context;
     private List<Post> posts;

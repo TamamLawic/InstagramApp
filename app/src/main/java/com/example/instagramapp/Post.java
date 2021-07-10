@@ -9,12 +9,16 @@ import com.parse.ParseUser;
 
 import java.util.Date;
 
+/**
+ * Parse class, setting up Post object.
+ */
 @ParseClassName("Post")
 public class Post extends ParseObject {
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
 
+    /** Returns the time elapsed given the creation date until now */
     public static String calculateTimeAgo(Date createdAt) {
 
         int SECOND_MILLIS = 1000;

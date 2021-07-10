@@ -40,11 +40,14 @@ import com.parse.SaveCallback;
 
 import java.io.File;
 import java.util.List;
-
+/**
+ * Activity that sets up the navigation bar at the bottom of the page. Uses Fragments for Feed, Compose, and Profile page.
+ */
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     private BottomNavigationView bottomNavigationView;
     final FragmentManager fragmentManager = getSupportFragmentManager();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //set onClickListener for the navagation bottom menu
+        //set onClickListener for the navigation bottom menu
         // handle navigation selection
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {

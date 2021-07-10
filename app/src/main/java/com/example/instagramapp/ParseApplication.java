@@ -4,7 +4,9 @@ import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
-
+/**
+ * Parse initialization, registers Parse models based on client and server keys.
+ */
 public class ParseApplication extends Application {
     @Override
     public void onCreate() {
